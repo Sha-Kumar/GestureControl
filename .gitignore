@@ -1,0 +1,7 @@
+# Miscelleneous
+__pycache__
+.vscode
+
+# Not sharables
+SecondMode
+handModel.h5
