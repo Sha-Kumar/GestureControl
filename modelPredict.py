@@ -39,7 +39,7 @@ def classifier(img) :
 #     x = x/255
 #     return x
     
-# result = np.argmax(model.predict([prepare('D:\SHASHANK\Tenserflow\GestureControl\Datasets\\test\\five\\1.jpg')]),axis=-1)
+# result = np.argmax(model.predict([prepare('<Filepath>\Datasets\\test\\five\\1.jpg')]),axis=-1)
 # print (Classes[int(result)])
-# img = image.load_img('D:\SHASHANK\Tenserflow\GestureControl\Datasets\\train\\one\\1.jpg', target_size=(256, 256))
+# img = image.load_img('<Filepath>\Datasets\\train\\one\\1.jpg', target_size=(256, 256))
 # img.show()

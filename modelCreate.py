@@ -10,8 +10,8 @@ from keras.layers import Dense,Dropout,Flatten
 from keras.layers import Conv2D,MaxPooling2D,Activation,AveragePooling2D,BatchNormalization
 from keras.preprocessing.image import ImageDataGenerator
 
-train_dir = "D:\SHASHANK\Tenserflow\GestureControl\Datasets\\train"
-test_dir =  "D:\SHASHANK\Tenserflow\GestureControl\Datasets\\test"
+train_dir = "<Filepath>\Datasets\\train"
+test_dir =  "<Filepath>\Datasets\\test"
 
 
 # function to get count of images
@@ -61,7 +61,7 @@ model.summary()
 from keras.preprocessing import image
 
 
-ImagePath = 'D:\SHASHANK\Tenserflow\GestureControl\Datasets\\test\one\\1.jpg'
+ImagePath = '<Filepath>\\test\one\\1.jpg'
 img = image.load_img(ImagePath)
 img=img.resize((256,256))
 print(type(img))
