@@ -10,6 +10,7 @@ from PIL import Image as im
 import time
 
 from modelPredict import *
+from interfaceModule import *
 
 # global variables
 bg = None
@@ -33,11 +34,21 @@ def run_avg(image, aWeight):
 #---------------------------------------------
 def segment(image, threshold = 50):
     global bg
+    thresholded = None
     # find the absolute difference between background and current frame
     diff = cv2.absdiff(bg.astype("uint8"), image)
+    mytime = time.localtime()
+    if mytime.tm_hour < 6 or mytime.tm_hour > 18:
+        # print ('It is night-time')
+        threshold  =  50
+        thresholded = cv2.threshold(diff, threshold, 255, cv2.THRESH_BINARY )[1]
+    else:
+        # print ('It is day-time')
+        threshold = 128
+        thresholded = cv2.threshold(diff, threshold, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
 
     # threshold the diff image so that we get the foreground
-    thresholded = cv2.threshold(diff, threshold, 255, cv2.THRESH_BINARY )[1]
+    # thresholded = cv2.threshold(diff, threshold, 255, cv2.THRESH_BINARY )[1]
 
     # get the contours in the thresholded image
     (cnts, _) = cv2.findContours(thresholded.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -115,6 +126,7 @@ if __name__ == "__main__":
                     lasttime = cur
                     print('Welcome')
                     strval = classifier(dataImage)
+                    interfacer(strval)
                     print('Hello ---> '+strval)
 
                 cv2.imshow("Threshloded value", thresholded)
