@@ -16,7 +16,7 @@ model.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accurac
 
 def prepare(img):
     img=img.resize((256,256))
-    img.save('file.jpg')
+    # img.save('file.jpg')
     x = image.img_to_array(img)
     x=np.expand_dims(x,axis=0)
     x = x/255

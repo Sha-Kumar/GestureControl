@@ -10,8 +10,8 @@ from keras.layers import Dense,Dropout,Flatten
 from keras.layers import Conv2D,MaxPooling2D,Activation,AveragePooling2D,BatchNormalization
 from keras.preprocessing.image import ImageDataGenerator
 
-train_dir = "<Filepath>\Datasets\\train"
-test_dir =  "<Filepath>\Datasets\\test"
+train_dir = ".\Datasets\\train"
+test_dir =  ".\Datasets\\test"
 
 
 # function to get count of images
@@ -61,7 +61,7 @@ model.summary()
 from keras.preprocessing import image
 
 
-ImagePath = '<Filepath>\\test\one\\1.jpg'
+ImagePath = '.\Datasets\\test\one\\1.jpg'
 img = image.load_img(ImagePath)
 img=img.resize((256,256))
 print(type(img))
@@ -111,5 +111,5 @@ model.fit(train_generator,
                 verbose=1)
 
 from keras.models import load_model
-model.save('handModel.h5')
+model.save('handModel2.h5')
 model.save('SecondMode')
