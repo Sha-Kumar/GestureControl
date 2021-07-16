@@ -111,5 +111,5 @@ model.fit(train_generator,
                 verbose=1)
 
 from keras.models import load_model
-model.save('handModel2.h5')
+model.save('handModel3.h5')
 model.save('SecondMode')

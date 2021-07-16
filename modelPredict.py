@@ -5,7 +5,7 @@ from keras.preprocessing import image
 # Model
 model = keras.models.load_model('SecondMode')
 # Mention name of the disease into list.
-Classes = ["five","four","one","three","two"]
+Classes = ["blank", "close", "five", "four", "one", "open", "rock", "three", "two"]
 
 # Pre-Processing test data same as train data.
 img_width=256
@@ -27,9 +27,6 @@ def classifier(img) :
     img = img.convert('RGB')
     result = np.argmax(model.predict([prepare(img)]), axis=-1)
     return Classes[int(result)]
-
-
-
 
 # def prepare(img_path):
 #     img = image.load_img(img_path, target_size=(256, 256))
