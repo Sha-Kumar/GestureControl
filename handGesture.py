@@ -11,6 +11,7 @@ import time
 
 from modelPredict import *
 from interfaceModule import *
+from configuration import *
 
 # global variables
 bg = None
@@ -44,7 +45,7 @@ def segment(image, threshold = 50):
         thresholded = cv2.threshold(diff, threshold, 255, cv2.THRESH_BINARY )[1]
     else:
         # print ('It is day-time')
-        threshold = 128
+        threshold = 127
         thresholded = cv2.threshold(diff, threshold, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
 
     # threshold the diff image so that we get the foreground
@@ -105,7 +106,7 @@ if __name__ == "__main__":
 
         # to get the background, keep looking till a threshold is reached
         # so that our running average model gets calibrated
-        if num_frames < 3:
+        if num_frames < 25:
             run_avg(gray, aWeight)
         else:
             # segment the hand region
@@ -122,11 +123,12 @@ if __name__ == "__main__":
 
                 dataImage = im.fromarray(thresholded)
                 cur = int(time.time())
-                if cur >= (lasttime + 8):
+                if cur >= (lasttime + 5):
                     lasttime = cur
                     print('Welcome')
                     strval = classifier(dataImage)
-                    interfacer(strval)
+                    # print(cnfg(strval))
+                    interfacer(strval, cnfg(strval))
                     print('Hello ---> '+strval)
 
                 cv2.imshow("Threshloded value", thresholded)
@@ -146,6 +148,7 @@ if __name__ == "__main__":
 
         # if the user pressed "q", then stop looping
         if keypress == ord("q"):
+            resetVal()
             break
 
 # free up memory
